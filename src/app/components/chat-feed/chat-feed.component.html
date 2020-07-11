@@ -1,0 +1,5 @@
+<section>
+  <div *ngFor="let message of feed | async">
+    <app-message [dataMessage]="message"></app-message>
+  </div>
+</section>

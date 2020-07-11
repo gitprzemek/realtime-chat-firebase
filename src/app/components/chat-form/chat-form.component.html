@@ -1,0 +1,6 @@
+<form class="chat-form" (ngSubmit)="sendMessage()">
+  <label for="chat-input" class="chat-form__label">
+    <input type="text" name="chat-input" class="chat-form__input" id="chat-input" [(ngModel)]="message" (keyup)="enterSendMessage($event)">
+  </label>
+  <button type="submit">SEND</button>
+</form>
