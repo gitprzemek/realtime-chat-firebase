@@ -19,8 +19,8 @@ export class AuthService {
   loginFn(email: string, password: string): any {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((resolve) => {
-        const status = 'online';
-        this.setUserStatus(status);
+        this.authUser = resolve;
+        this.setUserStatus('online');
         this.router.navigate(['chat']);
       });
   }
@@ -28,6 +28,7 @@ export class AuthService {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then( user => {
         this.authUser = user;
+        console.log(this.authUser);
         const status = 'online';
         this.setUserData(email, userName, status);
       })
@@ -35,11 +36,13 @@ export class AuthService {
   }
   setUserData(email, userName, status): void {
     const path = `users/${this.loadedUserId}`;
+    console.log(path);
     const userData = {
       email: email,
       userName: userName,
       status: status
     };
+    console.log(userData);
     this.db.object(path).update(userData)
       .then( resolve => console.log(resolve))
       .catch(error => console.log(error));
@@ -54,6 +57,7 @@ export class AuthService {
       .catch(error => console.log(error));
   }
   get loadedUserId(): string {
-    return this.authUser ? this.authUser.id : '';
+    console.log(this.authUser);
+    return this.authUser ? this.authUser.user.uid : '';
   }
 }

@@ -1,12 +1,23 @@
-<form action="">
-  <label for="name">USER NAME
-    <input type="text" id="name" name="userName" [(ngModel)]="userName">
-  </label>
-  <label for="email">EMAIL
-    <input type="text" id="email" name="email" [(ngModel)]="email">
-  </label>
-  <label for="password">PASSWORD
-    <input type="text" id="password" name="password" [(ngModel)]="password">
-  </label>
-  <button (click)="signUp()">REGISTER</button>
-</form>
+<section class="login-page">
+  <form action="" class="form">
+    <h1 class="form__header">Welcome in <br> my realtime chat.</h1>
+    <p class="form__text">To enter the application please log in:</p>
+    <label for="loginEmail" class="form__label">Email</label>
+    <input type="text" id="loginEmail" name="loginEmail" class="form__input" [(ngModel)]="loginEmail" placeholder="Your email">
+    <label for="loginPassword" class="form__label">Password</label>
+    <input type="text" id="loginPassword" name="loginPassword" class="form__input" [(ngModel)]="loginPassword" placeholder="Password">
+    <button class="form__button" (click)="signUp()">LOG IN</button>
+  </form>
+
+  <form action="" class="form">
+    <p class="form__text">If you do not have an account,<br> please register:</p>
+    <label for="name" class="form__label">User name</label>
+    <input type="text" id="name" name="userName" class="form__input" [(ngModel)]="userName" placeholder="Your display name">
+    <label for="email" class="form__label">Email</label>
+    <input type="text" id="email" name="email" class="form__input" [(ngModel)]="email" placeholder="Your email">
+    <label for="password" class="form__label">Password</label>
+    <input type="text" id="password" name="password" class="form__input" [(ngModel)]="password" placeholder="Password">
+    <button class="form__button" (click)="signUp()">REGISTER</button>
+  </form>
+</section>
+

@@ -12,6 +12,8 @@ export class LoginAndRegisterComponent implements OnInit {
   password: string;
   userName: string;
   errorMessage: string;
+  loginEmail: string;
+  loginPassword: string;
   constructor(private router: Router,
               private authService: AuthService) { }
 
