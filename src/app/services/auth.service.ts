@@ -22,7 +22,8 @@ export class AuthService {
         this.authUser = resolve;
         this.setUserStatus('online');
         this.router.navigate(['chat']);
-      });
+      })
+      .catch(error => console.log(error));
   }
   signUpFn(email: string, password: string, userName: string): any {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)

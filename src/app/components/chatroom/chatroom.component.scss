@@ -1,0 +1,34 @@
+.chatroom {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: auto;
+  min-height: 100vh;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(-45deg, #d7e1eb 0%, #dee8f2 100%);
+    z-index: -1;
+  }
+  .chatroom__chatlist-wrapper {
+    width: auto;
+    min-width: 310px;
+  }
+  .chatroom__chat-window-wrapper {
+    width: 100%;
+    padding: 0 15px;
+  }
+  .chatroom__chat-feed-wrapper {
+    background-color: #ff896e;
+  }
+  .chatroom__chat-form-wrapper {
+    background-color: #303aff;
+  }
+}

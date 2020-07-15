@@ -1,0 +1,19 @@
+@import "src/app/styles/abstract/variables";
+.btn-template {
+  border-radius: 6px;
+  margin: 0 auto;
+  box-shadow: $shadow;
+  cursor: pointer;
+  transition: .3s ease;
+  color: $primary2;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  font-weight: 500;
+
+  &:hover { color: $primary-dark; }
+  &:active {
+    box-shadow: $inner-shadow;
+  }
+}

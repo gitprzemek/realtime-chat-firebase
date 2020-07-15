@@ -6,18 +6,53 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .form {
-    display: flex;
-    flex-direction: column;
-    width: auto;
-    max-width: 600px;
-    margin: 0 auto;
+  background-image: url("src/assets/images/backgrounds/bg1tr.png");
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 40% auto;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background-image: url("src/assets/images/backgrounds/bg2bl.png");
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 45% auto;
+    z-index: -1;
   }
-  .form__header {
+  .login-page__header {
     font-size: 32px;
     font-weight: 500;
     margin: 0 0 25px;
     text-align: center;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+  }
+  .form__wrapper {
+    overflow: hidden;display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  .form__name-container {
+    max-height: 0;
+    //overflow: hidden;
+    transition: all 0.3s linear;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .showName {
+    max-height: 100px;
+    opacity: 1;
   }
   .form__text {
     font-size: 16px;
@@ -31,6 +66,30 @@
     padding: 0 6px;
     width: 280px;
   }
+  .form__input-wrapper {
+    position: relative;
+    margin: 0 auto 10px;
+  }
+  .form__input-wrapper.showError {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      bottom: 0;
+      right: 0;
+      background-image: url("src/assets/images/backgrounds/corner-error.png");
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      background-position: 0 0;
+    }
+    &::after {
+      transform: rotate(-90deg);
+      bottom: unset;
+      top: 0;
+    }
+  }
   .form__input {
     width: 280px;
     height: 50px;
@@ -42,17 +101,43 @@
     background: none;
     font-family: inherit;
     color: $primary2;
-    margin: 0 auto 10px;
+    margin: 0;
+
 
       &::placeholder { color: $greyDark; }
       &:focus { outline: none;}
 
   }
+
+  .form__error {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    left: 100%;
+    top: 0;
+    height: 50px;
+    width: auto;
+    max-width: 0;
+    border-radius: 0 6px 6px 0;
+    background:  $primary-red;
+    color: $white;
+    padding: 0;
+    overflow: hidden;
+    transition: all 0.3s linear;
+    white-space: nowrap;
+    //box-shadow: $inner-shadow-red;
+  }
+  .form__error.showError {
+    max-width: 300px;
+    padding: 0 14px;
+  }
   .form__button {
     width: 280px;
     height: 55px;
     border-radius: 6px;
-    margin: 10px auto 20px;
+    margin: 10px auto;
     box-shadow: $shadow;
     justify-self: center;
     display: flex;
@@ -88,6 +173,12 @@
       $shadow;
 
     }
+  }
+  .form__btn-switch {
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    letter-spacing: 0.5px;
   }
 
 }

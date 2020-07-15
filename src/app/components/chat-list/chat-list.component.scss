@@ -1,0 +1,35 @@
+@import "src/app/styles/main";
+.chat-list {
+  display: flex;
+  flex-direction: column;
+  .chat-list__header {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-list__button {
+    width: 280px;
+    height: 50px;
+    margin: 0 auto 20px;
+  }
+  .chat-list__button--name {
+    box-shadow: $inner-shadow;
+    cursor: auto;
+    &:hover { color: $primary2; }
+  }
+  .chat-list__button-wrapper {
+    margin: 0 auto 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .chat-list__divider {
+    height: 10px;
+    display: block;
+    width: 280px;
+    margin: 0 auto 20px;
+    box-shadow: $inner-shadow;
+    &:hover {
+    }
+  }
+}
