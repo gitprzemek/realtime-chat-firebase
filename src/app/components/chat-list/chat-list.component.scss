@@ -17,12 +17,121 @@
     cursor: auto;
     &:hover { color: $primary2; }
   }
-  .chat-list__button-wrapper {
+  .chat-list__button--wrapper {
     margin: 0 auto 20px;
+    width: 280px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   }
+  .chat-list__button-avatar-select {
+    position: relative;
+    min-width: 35%;
+    margin: 0 0 0 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    svg {
+      width: 32px;
+      height: 32px;
+    }
+    svg.selected {
+      transform: rotate(180deg);
+    }
+    path {
+      fill: $primary2;
+      &:hover {
+        fill: $primary-dark;
+      }
+    }
+    &:hover {
+      box-shadow: $shadow;
+    }
+  }
+  .chat-list__button-avatar-select.selected {
+    box-shadow: $inner-shadow;
+  }
+  .chat-list__button--logout {
+    width: 100%;
+    margin: 0 8px 0 0;
+  }
+  .chat-list__avatar-list {
+    max-height: 0;
+    max-width: 280px;
+    box-shadow: $shadow;
+    margin: 0 auto;
+    border-radius: 6px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    transition: all 0.3s linear;
+    overflow: hidden;
+    opacity: 0;
+  }
+  .chat-list__avatar-list.showDropdown {
+    max-height: 232px;
+    height: 232px;
+    width: 280px;
+    margin: 0 auto 20px;
+    padding: 8px 0;
+    opacity: 1;
+  }
+  .chat-list__avatar {
+    width: 40px;
+    height: 40px;
+    background-image: url("src/assets/images/avatars/got-avatars.png");
+    background-size: 620%;
+    background-repeat: no-repeat;
+    background-position: -1.4% -1.4%;
+  }
+  .chat-list__avatar--list {
+    margin: auto;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    outline: transparent;
+  }
+  .chat-list__avatar-dropdown-btn {
+    background-color: transparent;
+    border: none;
+    outline: transparent;
+    width: 72px;
+    height: 72px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+  }
+  .chat-list__avatar-dropdown-btn.selectedAvatarList {
+    box-shadow: $inner-shadow;
+  }
+  .chat-list__avatar--1-2 {
+    background-position: -1.4% 50.6%;
+  }
+  .chat-list__avatar--1-3 {
+    background-position: -1.4% 101.6%;
+  }
+  .chat-list__avatar--2-1 {
+    background-position: 32.9% -1.4%;
+  }
+  .chat-list__avatar--2-2 {
+    background-position: 32.9% 50.6%;
+  }
+  .chat-list__avatar--2-3 {
+    background-position: 32.9% 101.6%;
+  }
+  .chat-list__avatar--3-1 {
+    background-position: 66.9% -1.4%;
+  }
+  .chat-list__avatar--3-2 {
+    background-position: 66.9% 50.6%;
+  }
+  .chat-list__avatar--3-3 {
+    background-position: 66.9% 101.6%;
+  }
+
   .chat-list__divider {
     height: 10px;
     display: block;
@@ -31,5 +140,65 @@
     box-shadow: $inner-shadow;
     &:hover {
     }
+  }
+  .chat-list__list-wrapper {
+
+  }
+  .user-card {
+    width: 280px;
+    margin: 0 auto 15px;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+  }
+  .user-card__avatar {
+    width: 40px;
+    min-width: 40px;
+    height: 40px;
+    margin: auto 15px;
+    background-image: url("src/assets/images/avatars/got-avatars.png");
+    background-size: 620%;
+    background-repeat: no-repeat;
+    background-position: -1.4% -1.4%;
+  }
+  .user-card__data-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    overflow: hidden;
+  }
+  .user-card__name {
+    font-size: 16px;
+    margin: 0 0 6px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .user-card__unread {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 18px;
+    height: 18px;
+    background-color: $primary-red2;
+    margin: 8px;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    border-radius: 4px;
+  }
+  .user-card__last-msg {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 12px;
+    opacity: 0.8;
+    width: 180px;
+    height: 1.2em;
+    white-space: nowrap;
   }
 }

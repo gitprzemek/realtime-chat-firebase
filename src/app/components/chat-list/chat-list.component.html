@@ -1,19 +1,34 @@
 <section class="chat-list">
   <div class="chat-list__header">
+    <div class="chat-list__button--wrapper">
+      <button class="chat-list__button chat-list__button--logout btn-template">LOGOUT</button>
+      <button class="chat-list__button-avatar-select  btn-template" (click)="showAvatarList()" [class.selected]="showAvatarDropdown">
+        <div class="chat-list__avatar chat-list__avatar--{{selectedAvatar}}"></div>
+        <svg [class.selected]="showAvatarDropdown" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+      </button>
+    </div>
+    <div class="chat-list__avatar-list" [class.showDropdown]="showAvatarDropdown">
+        <button class="chat-list__avatar-dropdown-btn"
+                *ngFor="let avatar of avatarsList"
+                (click)="selectAvatar(avatar)"
+                [class.selectedAvatarList]="selectedAvatar === avatar"
+                >
+          <div class="chat-list__avatar chat-list__avatar--list chat-list__avatar--{{avatar}}"></div>
+        </button>
+    </div>
     <button class="chat-list__button chat-list__button--name btn-template">
       <span>Przemek Szczepanski</span>
     </button>
-    <div class="chat-list__button-wrapper">
-      <button>
-        <img src="" alt="avatar">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
-      </button>
-      <button class="chat-list__button btn-template">LOGOUT</button>
-    </div>
-
     <div class="chat-list__divider btn-template"></div>
   </div>
   <div class="chat-list__list-wrapper">
-
+      <div class="user-card btn-template" *ngFor="let user of users">
+        <div class="user-card__avatar"></div>
+        <div class="user-card__data-wrapper">
+          <p class="user-card__name">{{user.userName}}</p>
+          <span class="user-card__last-msg">Siemanko! Co tam u ciebie tralalalal lalalal alallalla</span>
+        </div>
+        <span class="user-card__unread">2</span>
+      </div>
   </div>
 </section>

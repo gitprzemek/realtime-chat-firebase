@@ -1,7 +1,7 @@
 .chatroom {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center;align-items: stretch;
   height: auto;
   min-height: 100vh;
   max-width: 1200px;
@@ -24,11 +24,13 @@
   .chatroom__chat-window-wrapper {
     width: 100%;
     padding: 0 15px;
+    display: flex;
+    flex-direction: column;
   }
   .chatroom__chat-feed-wrapper {
-    background-color: #ff896e;
+    height: 100%;
   }
   .chatroom__chat-form-wrapper {
-    background-color: #303aff;
+
   }
 }

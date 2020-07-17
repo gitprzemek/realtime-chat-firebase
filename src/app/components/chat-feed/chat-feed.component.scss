@@ -1,0 +1,9 @@
+@import "src/app/styles/main";
+.feed {
+  box-shadow: $inner-shadow;
+  padding: 15px;
+  border: none;
+  border-radius: 6px;
+  margin: 0 0 15px;
+  height: 100%;
+}
