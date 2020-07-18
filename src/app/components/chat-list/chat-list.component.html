@@ -1,7 +1,7 @@
 <section class="chat-list">
   <div class="chat-list__header">
     <div class="chat-list__button--wrapper">
-      <button class="chat-list__button chat-list__button--logout btn-template">LOGOUT</button>
+      <button class="chat-list__button chat-list__button--logout btn-template" (click)="logout()">LOGOUT</button>
       <button class="chat-list__button-avatar-select  btn-template" (click)="showAvatarList()" [class.selected]="showAvatarDropdown">
         <div class="chat-list__avatar chat-list__avatar--{{selectedAvatar}}"></div>
         <svg [class.selected]="showAvatarDropdown" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
@@ -17,18 +17,24 @@
         </button>
     </div>
     <button class="chat-list__button chat-list__button--name btn-template">
-      <span>Przemek Szczepanski</span>
+      <span *ngIf="user">{{user.userName}}</span>
     </button>
     <div class="chat-list__divider btn-template"></div>
   </div>
   <div class="chat-list__list-wrapper">
-      <div class="user-card btn-template" *ngFor="let user of users">
+      <div class="user-card btn-template" *ngFor="let contacts of users">
         <div class="user-card__avatar"></div>
         <div class="user-card__data-wrapper">
-          <p class="user-card__name">{{user.userName}}</p>
+          <p class="user-card__name">{{contacts.userName}}</p>
           <span class="user-card__last-msg">Siemanko! Co tam u ciebie tralalalal lalalal alallalla</span>
         </div>
-        <span class="user-card__unread">2</span>
+        <div class="user-card__status-wrapper">
+          <span class="user-card__unread">2</span>
+          <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-rss-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm1.5 2.5a1 1 0 0 0 0 2 8 8 0 0 1 8 8 1 1 0 1 0 2 0c0-5.523-4.477-10-10-10zm0 4a1 1 0 0 0 0 2 4 4 0 0 1 4 4 1 1 0 1 0 2 0 6 6 0 0 0-6-6zm.5 7a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+          </svg>
+        </div>
+
       </div>
   </div>
 </section>

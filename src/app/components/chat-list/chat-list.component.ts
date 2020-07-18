@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import {User} from '../../models/user.model';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-chat-list',
@@ -12,12 +13,25 @@ export class ChatListComponent implements OnInit {
   showAvatarDropdown = false;
   selectedAvatar = '1-1';
   users: User[];
-  constructor(private chatService: ChatService) { }
+  authUser: any;
+  user: User;
+  constructor(private chatService: ChatService,
+              private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.authUser().subscribe(userLog => {
+      this.authUser = userLog;
+      this.getLoggedUserData();
+    });
     this.chatService.getUsersData().subscribe(res => {
       console.log(res);
       this.users = res;
+    });
+  }
+  getLoggedUserData(): void {
+    this.chatService.getUserData().subscribe( (res: User) => {
+      this.user = res;
+      console.log(this.user);
     });
   }
   showAvatarList(): void {
@@ -25,5 +39,8 @@ export class ChatListComponent implements OnInit {
   }
   selectAvatar(avatar): void {
     this.selectedAvatar = avatar;
+  }
+  logout(): void {
+    this.authService.logout();
   }
 }

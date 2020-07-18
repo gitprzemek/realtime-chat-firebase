@@ -9,31 +9,39 @@ import * as firebase from 'firebase/app';
   providedIn: 'root'
 })
 export class AuthService {
-  private user: Observable<firebase.User>;
-  authUser: any;
+  user: Observable<firebase.User>;
+  authState: any;
   constructor(private router: Router,
               private afAuth: AngularFireAuth,
               private db: AngularFireDatabase) {
         this.user = afAuth.authState;
   }
+  authUser(): any {
+    return this.user;
+  }
   loginFn(email: string, password: string): any {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((resolve) => {
-        this.authUser = resolve;
+        this.authState = resolve;
         this.setUserStatus('online');
         this.router.navigate(['chat']);
+        console.log(this.authState);
       })
       .catch(error => console.log(error));
   }
   signUpFn(email: string, password: string, userName: string): any {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
       .then( user => {
-        this.authUser = user;
-        console.log(this.authUser);
+        this.authState = user;
+        console.log(this.authState);
         const status = 'online';
         this.setUserData(email, userName, status);
       })
       .catch(error => console.log(error));
+  }
+  logout() {
+    this.afAuth.auth.signOut();
+    this.router.navigate(['login']);
   }
   setUserData(email, userName, status): void {
     const path = `users/${this.loadedUserId}`;
@@ -58,7 +66,7 @@ export class AuthService {
       .catch(error => console.log(error));
   }
   get loadedUserId(): string {
-    console.log(this.authUser);
-    return this.authUser ? this.authUser.user.uid : '';
+    console.log(this.authState);
+    return this.authState ? this.authState.user.uid : '';
   }
 }

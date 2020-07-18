@@ -11,7 +11,7 @@ import {User} from '../models/user.model';
   providedIn: 'root'
 })
 export class ChatService {
-  userName: string;
+  userData: User;
   user: any;
   chatMessages: AngularFireList<ChatMessage>;
   chatMessage: ChatMessage;
@@ -25,14 +25,11 @@ export class ChatService {
         }
     });
   }
-  getUserData(): any {
+  getUserData(): Observable<any> {
     const userId = this.user.uid;
     const path = `/users/${userId}`;
     console.log(path);
-    this.db.object(path).valueChanges().subscribe( (ref: User) => {
-      this.userName = ref.userName;
-      console.log(ref);
-    });
+    return  this.db.object(path).valueChanges();
   }
   getUsersData(): any {
     const path = `/users`;
@@ -43,7 +40,7 @@ export class ChatService {
     this.chatMessages = this.getMessages();
     this.chatMessages.push( {
       message: text,
-      sendBy: this.userName ? this.userName : 'Zdzisław',
+      sendBy: this.userData.userName ? this.userData.userName : 'Zdzisław',
       messageDate: new Date().toISOString(),
       unread: true
     }).then(res => {
