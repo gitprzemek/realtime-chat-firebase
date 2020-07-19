@@ -16,6 +16,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {environment} from '../environments/environment';
 import {FormsModule} from '@angular/forms';
+import { ChatListCardComponent } from './components/chat-list-card/chat-list-card.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {FormsModule} from '@angular/forms';
     ChatFormComponent,
     ChatListComponent,
     MessageComponent,
-    ChatFeedComponent
+    ChatFeedComponent,
+    ChatListCardComponent
   ],
   imports: [
     BrowserModule,

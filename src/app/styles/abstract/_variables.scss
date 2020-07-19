@@ -11,6 +11,7 @@ $primary: #6d5dfc;
 $primary-dark: #5b0eeb;
 
 $primary2: rgb(78, 36, 153);
+$primary3: rgb(158, 20, 194);
 
 $primary-red2: #e002b9;
 $primary-red: #cf0fd7;
@@ -24,7 +25,6 @@ $greyDark: #9baacf;
 $shadow: .3rem .3rem .6rem $greyLight-2, -.2rem -.2rem .5rem $white;
 $shadow-accent:  0.1rem 0.1rem 0.4rem #340a80, -0.1rem -0.1rem 0.4rem #b89ee8;
 $shadow-accent2:  inset 0.2rem 0.2rem 1rem #a67fec, inset -0.2rem -0.2rem 1rem #0f002a, 0.3rem 0.3rem 0.6rem #c8d0e7, -0.2rem -0.2rem 0.5rem #FFFFFF;
-$inner-shadow: inset .2rem .2rem .5rem $greyLight-2,
-inset -.2rem -.2rem .5rem $white;
+$inner-shadow: inset .2rem .2rem .5rem $greyLight-2, inset -.2rem -.2rem .5rem $white;
 $inner-shadow-red: inset 0rem 0.2rem 0.5rem #6a0464, inset -0.2rem -0.2rem 0.5rem #e68fff;
 $inner-shadow-accent: inset 0.2rem 0.2rem 0.5rem #2c0377e6, inset -0.2rem -0.2rem 0.5rem rgba(143, 123, 185, 0.98);

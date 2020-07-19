@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {AuthService} from './auth.service';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ChatMessage} from '../models/message.model';
 import {resolve} from 'url';
 import {User} from '../models/user.model';
@@ -11,16 +11,19 @@ import {User} from '../models/user.model';
   providedIn: 'root'
 })
 export class ChatService {
+  onChatChange$: BehaviorSubject<any> = new BehaviorSubject(null);
   userData: User;
   user: any;
   chatMessages: AngularFireList<ChatMessage>;
   chatMessage: ChatMessage;
+  selectedChat: any;
   constructor(private db: AngularFireDatabase,
               private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe( response => {
         if (response) {
           this.user = response;
           console.log(this.user);
+          console.log(this.user.uid);
           this.getUserData();
         }
     });
@@ -37,12 +40,13 @@ export class ChatService {
   }
   sendMessage(text: string): void {
     console.log(text);
-    this.chatMessages = this.getMessages();
+    this.chatMessages = this.db.list( `messages/${this.selectedChat.key}`);
     this.chatMessages.push( {
+      chatKey: this.selectedChat.key,
       message: text,
-      sendBy: this.userData.userName ? this.userData.userName : 'Zdzisław',
+      sendBy: this.user.uid ? this.user.uid : '',
       messageDate: new Date().toISOString(),
-      unread: true
+      unread: false
     }).then(res => {
       console.log(res);
     });
@@ -56,6 +60,23 @@ export class ChatService {
     // });
   }
   getMessages(): any {
-    return this.db.list( 'messages',  ref => ref.orderByKey().limitToLast(25)).valueChanges();
+    if (this.selectedChat && this.selectedChat.key) {
+      return this.db.list( `messages/${this.selectedChat.key}`,  ref => ref.orderByKey().limitToLast(25)).valueChanges();
+    } else {
+      return null;
+    }
+  }
+  getChat(contact?): any {
+    console.log(this.user, contact);
+    const chatList = this.db.list('chats');
+    this.selectedChat = chatList.push({
+      id: this.user.uid + '__' + contact.id,
+      members: [this.user.uid, contact.id],
+      lastMessage: '',
+      lastMessageDate: null
+    });
+    console.log(this.selectedChat, this.selectedChat.key);
+    this.onChatChange$.next(this.selectedChat.key);
+    console.log(this.onChatChange$);
   }
 }

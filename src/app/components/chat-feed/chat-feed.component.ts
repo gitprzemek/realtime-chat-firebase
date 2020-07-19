@@ -9,19 +9,30 @@ import {ChatMessage} from '../../models/message.model';
   styleUrls: ['./chat-feed.component.scss']
 })
 export class ChatFeedComponent implements OnInit, OnChanges {
-  feed: any;
+  feed: ChatMessage[];
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
     this.feed = this.chatService.getMessages();
-    console.log(this.feed, this.feed.value);
-    this.chatService.getMessages().subscribe(res => {
+    console.log(this.feed);
+    this.chatService.onChatChange$.subscribe( res => {
       console.log(res);
+      if (res) {
+        this.getMessageFn();
+      }
     });
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.feed = this.chatService.getMessages();
     console.log(this.feed);
+  }
+  getMessageFn(): void {
+    if (this.chatService.getMessages()) {
+      this.chatService.getMessages().subscribe(messages => {
+        this.feed = messages;
+        console.log(messages);
+      });
+    }
   }
 
 }

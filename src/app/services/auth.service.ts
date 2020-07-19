@@ -47,9 +47,10 @@ export class AuthService {
     const path = `users/${this.loadedUserId}`;
     console.log(path);
     const userData = {
-      email: email,
-      userName: userName,
-      status: status
+      id: this.loadedUserId,
+      email,
+      userName,
+      status
     };
     console.log(userData);
     this.db.object(path).update(userData)
@@ -59,7 +60,7 @@ export class AuthService {
   setUserStatus(status): void {
     const path = `users/${this.loadedUserId}`;
     const userData = {
-      status: status
+      status
     };
     this.db.object(path).update(userData)
       .then( resolve => console.log(resolve))
