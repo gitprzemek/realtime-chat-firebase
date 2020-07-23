@@ -14,6 +14,7 @@ import {AuthService} from './services/auth.service';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import {environment} from '../environments/environment';
 import {FormsModule} from '@angular/forms';
 import { ChatListCardComponent } from './components/chat-list-card/chat-list-card.component';
@@ -35,6 +36,7 @@ import { ChatListCardComponent } from './components/chat-list-card/chat-list-car
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    AngularFirestoreModule,
     FormsModule
   ],
   providers: [AuthService, ChatService],

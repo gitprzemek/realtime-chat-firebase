@@ -4,6 +4,7 @@ import { AngularFireDatabase} from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {Observable} from 'rxjs';
 import * as firebase from 'firebase/app';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,11 @@ export class AuthService {
   authState: any;
   constructor(private router: Router,
               private afAuth: AngularFireAuth,
-              private db: AngularFireDatabase) {
+              private db: AngularFireDatabase,
+              private afs: AngularFirestore) {
         this.user = afAuth.authState;
   }
-  authUser(): any {
+  authUser(): Observable<any> {
     return this.user;
   }
   loginFn(email: string, password: string): any {
@@ -53,9 +55,13 @@ export class AuthService {
       status
     };
     console.log(userData);
-    this.db.object(path).update(userData)
+    this.afs.collection('users').doc(this.loadedUserId).set(userData)
       .then( resolve => console.log(resolve))
       .catch(error => console.log(error));
+
+    // this.db.object(path).update(userData)
+    //   .then( resolve => console.log(resolve))
+    //   .catch(error => console.log(error));
   }
   setUserStatus(status): void {
     const path = `users/${this.loadedUserId}`;

@@ -23,7 +23,9 @@
   </div>
   <div class="chat-list__list-scroll-wrapper">
     <div class="chat-list__list-wrapper">
-      <app-chat-list-card *ngFor="let contact of users" [contact]="contact"></app-chat-list-card>
+      <ng-container *ngFor="let contact of users">
+        <app-chat-list-card  *ngIf="contact?.id !== user?.id" [contact]="contact"></app-chat-list-card>
+      </ng-container>
     </div>
   </div>
 </section>

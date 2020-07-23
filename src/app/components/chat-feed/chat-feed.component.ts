@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ChatService} from '../../services/chat.service';
 import {AngularFireList} from '@angular/fire/database';
 import {ChatMessage} from '../../models/message.model';
@@ -8,7 +8,7 @@ import {ChatMessage} from '../../models/message.model';
   templateUrl: './chat-feed.component.html',
   styleUrls: ['./chat-feed.component.scss']
 })
-export class ChatFeedComponent implements OnInit, OnChanges {
+export class ChatFeedComponent implements OnInit, OnChanges, OnDestroy {
   feed: ChatMessage[];
   constructor(private chatService: ChatService) { }
 
@@ -25,6 +25,9 @@ export class ChatFeedComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.feed = this.chatService.getMessages();
     console.log(this.feed);
+  }
+  ngOnDestroy(): void {
+    this.feed = [];
   }
   getMessageFn(): void {
     if (this.chatService.getMessages()) {

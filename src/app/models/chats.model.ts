@@ -1,6 +1,6 @@
 export class Chats {
   id: string;
-  members: Array<string>;
+  members: object;
   lastMessage: string;
   lastMessageDate: string;
 }
