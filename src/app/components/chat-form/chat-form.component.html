@@ -1,5 +1,12 @@
 <form class="chat-form" (ngSubmit)="sendMessage()">
-  <input type="text" name="chat-input" class="chat-form__input" id="chat-input" [(ngModel)]="message" (keyup)="enterSendMessage($event)">
+  <input type="text"
+         name="chat-input"
+         class="chat-form__input"
+         id="chat-input"
+         maxlength="300"
+         placeholder="Type a message. (max 300 characters)"
+         [(ngModel)]="message"
+         (keyup)="enterSendMessage($event)">
 
   <button type="submit" class="chat-form__submit-btn btn-template" >SEND</button>
 </form>

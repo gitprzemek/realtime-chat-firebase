@@ -5,6 +5,7 @@ $color4: #340a80;
 $color5: #b89ee8;
 $color6: #2c0377e6;
 $color7: #c5aeeffa;
+$color8: #570caa;
 
 $primary-light: #8abdff;
 $primary: #6d5dfc;
@@ -28,3 +29,5 @@ $shadow-accent2:  inset 0.2rem 0.2rem 1rem #a67fec, inset -0.2rem -0.2rem 1rem #
 $inner-shadow: inset .2rem .2rem .5rem $greyLight-2, inset -.2rem -.2rem .5rem $white;
 $inner-shadow-red: inset 0rem 0.2rem 0.5rem #6a0464, inset -0.2rem -0.2rem 0.5rem #e68fff;
 $inner-shadow-accent: inset 0.2rem 0.2rem 0.5rem #2c0377e6, inset -0.2rem -0.2rem 0.5rem rgba(143, 123, 185, 0.98);
+$shadow-small: 1px 1px 2px $greyLight-2, -1px -1px  2px  $white;
+$shadow-accent3:  inset 2px 2px 5px #a67fec, inset -2px -2px  5px  #0f002a, 1px 1px 2px #c8d0e7, -1px -1px  2px #FFFFFF;

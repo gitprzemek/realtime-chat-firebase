@@ -1,17 +1,57 @@
+@import "src/app/styles/abstract/variables";
 .message {
   width: auto;
   height: auto;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin: 0 0 20px;
+  padding: 0 65px 0 0;
   .message__content {
+    background-color: $primary-red2;
+    color: white;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    position: relative;
 
+    &::before {
+      content: "";
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background-color: $primary-red2;
+      border-radius: 2px;
+      transform: rotate(45deg);
+      left: -4px;
+      top: 17px;
+      z-index: -1;
+    }
+  }
+  .message__content.lastMessage {
+    animation: showMessage 0.3s linear;
+  }
+  .message__text {
+    margin: 0 0 8px;
+    line-height: 1.3em;
+  }
+  .message__date {
+    font-size: 10px;
+    font-weight: 300;
   }
   .message__avatar-wrapper {
     width: 50px;
     max-width: 50px;
-    margin: 0;
+    min-width: 50px;
+    margin: 0 15px 0 0;
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
+    &:active {
+      box-shadow: $shadow;
+    }
   }
   .message__avatar {
     width: 40px;
@@ -20,5 +60,49 @@
     background-size: 620%;
     background-repeat: no-repeat;
     background-position: -1.4% -1.4%;
+  }
+}
+.message.my-message {
+  padding: 0 0 0 65px;
+  justify-content: flex-end;
+  .message__content {
+    order: 1;
+    background-color: $color8;
+    &::before {
+      background-color: $color8;
+      left: unset;
+      right: -4px;
+    }
+  }
+  .message__avatar-wrapper {
+    order: 2;
+    margin: 0 0 0 15px;
+
+  }
+}
+@keyframes showMessage {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(0.2);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.9);
+  }
+  90% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
   }
 }

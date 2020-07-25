@@ -1,5 +1,5 @@
-<section class="feed">
-  <div *ngFor="let message of feed">
-    <app-message [dataMessage]="message"></app-message>
+<section class="feed" #feedContainer>
+  <div class="feed__message" *ngFor="let message of feed; let i = index" >
+    <app-message [dataMessage]="message" [userLogIn]="userLogIn" [lastMessage]="i === feed.length - 1"></app-message>
   </div>
 </section>

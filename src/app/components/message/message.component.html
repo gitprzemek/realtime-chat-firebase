@@ -1,8 +1,8 @@
-<div class="message">
-  <div class="message__content">
-    <p>{{text}}</p>
-    <p>{{date | date: 'medium'}}</p>
-  </div>
+<div class="message" [class.my-message]="myMessage">
   <div class="message__avatar-wrapper btn-template"><div class="message__avatar"></div></div>
+  <div class="message__content" [class.lastMessage]="lastMessage">
+    <p class="message__text">{{text}}</p>
+    <p class="message__date">{{date | date: 'medium'}}</p>
+  </div>
 </div>
 

@@ -41,7 +41,7 @@ export class ChatService {
     this.afs.collection( `chats`).doc(`${this.selectedChat.id}`).collection('messages').add({
       message: text,
       sendBy: this.user.uid ? this.user.uid : '',
-      messageDate: new Date().toISOString(),
+      messageDate: new Date(),
       unread: false
     }).then(res => {
       console.log(res);
@@ -49,7 +49,11 @@ export class ChatService {
   }
   getMessages(): any {
     if (this.selectedChat && this.selectedChat.id) {
-      return this.afs.collection( `chats`).doc(`${this.selectedChat.id}`).collection('messages').valueChanges();
+      return this.afs
+        .collection( `chats`)
+        .doc(`${this.selectedChat.id}`)
+        .collection('messages', ref => ref.orderBy('messageDate', 'desc').limit(20))
+        .valueChanges();
     } else {
       return null;
     }

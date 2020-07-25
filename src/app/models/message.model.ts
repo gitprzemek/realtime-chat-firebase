@@ -3,6 +3,6 @@
 export class ChatMessage {
   message: string;
   sendBy: any;
-  messageDate: string;
+  messageDate: any;
   unread: boolean;
 }

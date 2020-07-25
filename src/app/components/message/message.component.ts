@@ -1,9 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ChatMessage} from '../../models/message.model';
-import {AuthService} from '../../services/auth.service';
-import {User} from '../../models/user.model';
-import * as firebase from 'firebase';
-
 @Component({
   selector: 'app-message',
   templateUrl: './message.component.html',
@@ -11,19 +7,18 @@ import * as firebase from 'firebase';
 })
 export class MessageComponent implements OnInit {
   @Input() dataMessage: ChatMessage;
+  @Input() userLogIn;
+  @Input() lastMessage = false;
   text: string;
-  date: string;
+  date: Date;
   myMessage = false;
-  constructor(private authService: AuthService) { }
+  constructor() { }
 
   ngOnInit() {
-    this.authService.authUser().subscribe( (response: firebase.User) => {
-      console.log(this.dataMessage, response);
-      this.myMessage = this.dataMessage.sendBy === response.uid;
-      console.log(this.myMessage);
-    });
+    console.log(this.dataMessage);
+    this.myMessage = this.dataMessage.sendBy === this.userLogIn.uid;
     this.text = this.dataMessage.message;
-    this.date = this.dataMessage.messageDate;
+    this.date = new Date(this.dataMessage.messageDate * 1000);
   }
 
 }
